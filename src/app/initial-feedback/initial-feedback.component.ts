@@ -1,13 +1,9 @@
-import {
-  Component,
-  Input
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'initial-feedback',
   templateUrl: 'initial-feedback.component.html'
 })
-export class InitialFeedbackComponent {
-  @Input()
-  public message: string;
+export class ResponseType {
+
 }
