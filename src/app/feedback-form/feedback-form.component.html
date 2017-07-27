@@ -1,0 +1,16 @@
+<div>
+
+</div>
+<form
+  name="positiveFeedackForm">
+  <label for="feedback-comment" class="sky-control-label">Have more feedback? Let us know!</label>
+  <textarea class="sky-form-control" rows="5" cols="10" placeholder="Have more feedback? Let us know!"></textarea>
+    <sky-checkbox [(ngModel)]="positiveFeedackForm.mayContactUser">
+      <sky-checkbox-label>
+        May we contact you about your feedback?
+      </sky-checkbox-label>
+    </sky-checkbox>
+  <button (click)="submitForm()" class="sky-btn sky-btn-primary">Submit</button>
+  <button (click)="clearForm()" class="sky-btn sky-btn-default">Cancel</button>
+</form>
+
