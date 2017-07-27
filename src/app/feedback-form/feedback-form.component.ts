@@ -12,18 +12,9 @@ export class PositiveFormFeedbackComponent {
   @Input()
   public feedbackType: string;
 
-  public doNotContact = {
-    checked: true
-  };
-
   private formData: any;
 
-  constructor(
-    private submitService: FormSubmitService) {
-      this.createForm();
-  }
-
-  public createForm() {
+  constructor(private submitService: FormSubmitService) {
     this.formData = new FeedbackData();
   }
 
