@@ -2,26 +2,24 @@ import { Component, Input } from '@angular/core';
 import { FormSubmitService } from '../shared/form-submit.service';
 
 @Component({
-  selector: 'positive-form-feedback',
-  templateUrl: './positive-form.component.html',
-  styleUrls: ['./positive-form.component.scss']
+  selector: 'feedback-form-feedback',
+  templateUrl: './feedback-form.component.html',
+  styleUrls: ['./feedback-form.component.scss']
 })
 export class PositiveFormFeedbackComponent {
   @Input()
-  public positiveFeedback: boolean;
+  public feedbackType: string;
 
   private formData: any;
-  public mayContactUser: boolean = false;
 
   constructor(private submitService: FormSubmitService) { }
 
   public submitForm() {
-    console.log('submitting');
-    console.log(this.mayContactUser);
+    this.feedbackType = 'positive';
     this.submitService.submitData(this.formData);
   }
 
   public clearForm() {
-
+    this.feedbackType = 'negative';
   }
 }
