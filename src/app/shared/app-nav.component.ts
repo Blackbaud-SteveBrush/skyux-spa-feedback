@@ -14,6 +14,10 @@ export class AppNavComponent {
     {
       titleKey: 'app_nav_about',
       path: '/about'
+    },
+    {
+      titleKey: 'app_nav_feedback',
+      path: '/initial-feedback'
     }
   ];
 }
