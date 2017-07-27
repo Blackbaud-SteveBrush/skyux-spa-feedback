@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { FeedbackData } from '../shared/feedbackData';
-
 import { FormSubmitService } from '../shared/form-submit.service';
 
 @Component({
