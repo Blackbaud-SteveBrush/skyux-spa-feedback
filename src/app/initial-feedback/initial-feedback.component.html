@@ -1,6 +1,11 @@
 <p>Was this information helpful?</p>
-<button type="button" class="sky-btn sky-btn-primary" (click)="updateType('positive')">Yes</button>
-<button type="button" class="sky-btn sky-btn-default" (click)="updateType('negative')">No</button>
-<br>
-<feedback-form [(feedbackType)]="parentType"> 
+<div>
+  <sky-radio name="radiotest" [(ngModel)]="parentType" value="positive">
+    <sky-radio-label>Yes</sky-radio-label>
+  </sky-radio>
+  <sky-radio name="radiotest" [(ngModel)]="parentType" value="negative">
+    <sky-radio-label>No</sky-radio-label>
+  </sky-radio>
+</div>
+<feedback-form [(feedbackType)]="parentType">
 </feedback-form>
