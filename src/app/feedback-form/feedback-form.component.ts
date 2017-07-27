@@ -4,13 +4,13 @@ import { FeedbackData } from '../shared/feedbackData';
 import { FormSubmitService } from '../shared/form-submit.service';
 
 @Component({
-  selector: 'feedback-form-feedback',
+  selector: 'feedback-form',
   templateUrl: './feedback-form.component.html',
   styleUrls: ['./feedback-form.component.scss']
 })
 export class PositiveFormFeedbackComponent {
   @Input()
-  public feedbackType: string;
+  public feedbackType: string = '';
 
   private formData: any;
 
@@ -26,5 +26,6 @@ export class PositiveFormFeedbackComponent {
   public clearForm() {
     this.formData.comment = '';
     this.formData.do_not_contact = true;
+    this.feedbackType = '';
   }
 }

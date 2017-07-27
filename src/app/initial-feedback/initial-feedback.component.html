@@ -1,0 +1,6 @@
+<p>Was this information helpful?</p>
+<button type="button" class="sky-btn sky-btn-primary" (click)="updateType('positive')">Yes</button>
+<button type="button" class="sky-btn sky-btn-default" (click)="updateType('negative')">No</button>
+<br>
+<feedback-form [(feedbackType)]="parentType"> 
+</feedback-form>
