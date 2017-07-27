@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { FeedbackData } from '../shared/feedbackData';
+
 import { FormSubmitService } from '../shared/form-submit.service';
 
 @Component({
@@ -18,20 +20,21 @@ export class PositiveFormFeedbackComponent {
   private formData: any;
 
   constructor(
-    private submitService: FormSubmitService,
-    private router: Router) { }
+    private submitService: FormSubmitService) {
+      this.createForm();
+  }
 
-  public submitForm(comment: string) {
-    this.formData = {
-      comment,
-      do_not_contact: this.doNotContact.checked,
-      type: this.feedbackType
-    };
+  public createForm() {
+    this.formData = new FeedbackData();
+  }
 
+  public submitForm() {
+    this.formData.type = this.feedbackType;
     this.submitService.submitData(this.formData);
   }
 
   public clearForm() {
-    this.feedbackType = 'negative';
+    this.formData.comment = '';
+    this.formData.doNotContact = true;
   }
 }

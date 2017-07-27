@@ -1,16 +1,15 @@
 <div *ngIf="feedbackType">
-  <form
-    name="positiveFeedackForm">
+  <form>
     <p *ngIf="feedbackType === 'negative'">We're sorry you didn't find this helpful! Please let us know why.</p>
-    <textarea #feedbackText class="sky-form-control" rows="5" cols="10" placeholder="Have more feedback? Let us know!"></textarea>
+    <textarea [(ngModel)]="formData.comment" name="comment" class="sky-form-control" rows="5" cols="10" placeholder="Have more feedback? Let us know!"></textarea>
     <div class="contact-checkbox-container">
-      <sky-checkbox [(ngModel)]="doNotContact.checked" [ngModelOptions]="{standalone: true}">
+      <sky-checkbox [(ngModel)]="formData.doNotContact" name="doNotContact">
         <sky-checkbox-label>
           I do not wish to be contacted regarding my feedback
         </sky-checkbox-label>
       </sky-checkbox>
     </div>
-    <button (click)="submitForm(feedbackText.value)" class="sky-btn sky-btn-primary" type="submit">Submit</button>
+    <button (click)="submitForm()" class="sky-btn sky-btn-primary" type="submit">Submit</button>
     <button (click)="clearForm()" class="sky-btn sky-btn-default" type="cancel">Cancel</button>
   </form>
 </div>

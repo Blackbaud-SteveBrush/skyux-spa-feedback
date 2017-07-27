@@ -1,13 +1,17 @@
-export interface FeedbackData {
-  type: boolean;
-  url?: string;
-  user?: User;
-  do_not_contact: boolean;
-  comment: string;
+export class FeedbackData {
+  public type: string = '';
+  public url: string = '';
+  public user: User = {
+    firstName: '',
+    lastName: '',
+    email: ''
+  };
+  public doNotContact: boolean = true;
+  public comment: string = '';
 }
 
 interface User {
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
 }
