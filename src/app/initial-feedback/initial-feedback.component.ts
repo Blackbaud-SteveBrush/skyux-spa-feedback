@@ -4,6 +4,10 @@ import { Component } from '@angular/core';
   selector: 'initial-feedback',
   templateUrl: 'initial-feedback.component.html'
 })
-export class ResponseType {
-
+export class FeedbackComponent {
+  public parentType: string = '';
+  
+  public updateType(responseType: string): void {
+    this.parentType = responseType;
+  }
 }

@@ -1,4 +1,4 @@
-<div *ngIf="feedbackType">
+<div *ngIf="(this.feedbackType === 'positive' || this.feedbackType === 'negative')">
   <form>
     <p *ngIf="feedbackType === 'negative'">We're sorry you didn't find this helpful! Please let us know why.</p>
     <textarea [(ngModel)]="formData.comment" name="comment" class="sky-form-control" rows="5" cols="10" placeholder="Have more feedback? Let us know!"></textarea>
