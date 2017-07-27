@@ -1,7 +1,7 @@
 export interface FeedbackData {
   type: boolean;
-  url: string;
-  user: User;
+  url?: string;
+  user?: User;
   do_not_contact: boolean;
   comment: string;
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormSubmitService } from '../shared/form-submit.service';
 
 @Component({
@@ -10,12 +11,23 @@ export class PositiveFormFeedbackComponent {
   @Input()
   public feedbackType: string;
 
+  public doNotContact = {
+    checked: true
+  };
+
   private formData: any;
 
-  constructor(private submitService: FormSubmitService) { }
+  constructor(
+    private submitService: FormSubmitService,
+    private router: Router) { }
 
-  public submitForm() {
-    this.feedbackType = 'positive';
+  public submitForm(comment: string) {
+    this.formData = {
+      comment,
+      do_not_contact: this.doNotContact.checked,
+      type: this.feedbackType
+    };
+
     this.submitService.submitData(this.formData);
   }
 
