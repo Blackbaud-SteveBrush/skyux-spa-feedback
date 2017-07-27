@@ -12,7 +12,6 @@ export class PositiveFormFeedbackComponent {
   @Input()
   public feedbackType: string = '';
 
-
   private formData: any;
 
   constructor(private submitService: FormSubmitService) {
