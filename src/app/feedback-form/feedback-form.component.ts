@@ -29,12 +29,11 @@ export class PositiveFormFeedbackComponent {
 
   public submitForm() {
     this.formData.type = this.feedbackType;
-
     this.submitService.submitData(this.formData);
   }
 
   public clearForm() {
     this.formData.comment = '';
-    this.formData.doNotContact = true;
+    this.formData.do_not_contact = true;
   }
 }
