@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
 })
 export class FeedbackComponent {
   public parentType: string = '';
-  
-  public updateType(responseType: string): void {
-    this.parentType = responseType;
+
+  public onClear(event: any) {
+    console.log(event);
   }
 }
+

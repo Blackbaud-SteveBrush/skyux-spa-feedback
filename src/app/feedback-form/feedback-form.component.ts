@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { FeedbackData } from '../shared/feedbackData';
 import { FormSubmitService } from '../shared/form-submit.service';
@@ -13,19 +13,28 @@ export class PositiveFormFeedbackComponent {
   public feedbackType: string = '';
 
   private formData: any;
+  private isWaiting: boolean = false;
+  public feedbackSubmitted: boolean = false;
 
   constructor(private submitService: FormSubmitService) {
     this.formData = new FeedbackData();
   }
 
   public submitForm() {
+    this.isWaiting = true;
     this.formData.type = this.feedbackType;
-    this.submitService.submitData(this.formData);
+    this.submitService.submitData(this.formData)
+      .subscribe(res => {
+        this.isWaiting = false;
+        if (res.status === 200) {
+          this.clearForm();
+        }
+      });
   }
 
   public clearForm() {
-    this.formData.comment = '';
-    this.formData.do_not_contact = true;
+    this.formData = new FeedbackData();
     this.feedbackType = '';
+    this.feedbackSubmitted =  true;
   }
 }

@@ -11,7 +11,14 @@
     </div>
     <div class="button-group">
       <button (click)="submitForm()" class="sky-btn sky-btn-primary" type="submit">Submit</button>
-      <button (click)="clearForm()" class="sky-btn sky-btn-default" type="cancel">Cancel</button>
+      <button (click)="clearForm()" class="sky-btn sky-btn-default" type="reset">Cancel</button>
     </div>
   </form>
+  <sky-wait [isWaiting]="isWaiting">
+  </sky-wait>
+</div>
+<div *ngIf="feedbackSubmitted">
+  <p>
+    Thank you for submitting your feedback!
+  </p>
 </div>
