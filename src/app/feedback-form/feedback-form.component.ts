@@ -35,6 +35,6 @@ export class PositiveFormFeedbackComponent {
 
   public clearForm() {
     this.formData.comment = '';
-    this.formData.doNotContact = true;
+    this.formData.do_not_contact = true;
   }
 }
