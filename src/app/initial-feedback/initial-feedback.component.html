@@ -5,12 +5,16 @@
   <div *ngIf="!getFormSubmitted()">
     <p>Was this information helpful?</p>
     <div>
-      <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="positive">
-        <sky-radio-label>Yes</sky-radio-label>
-      </sky-radio>
-      <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="negative">
-        <sky-radio-label>No</sky-radio-label>
-      </sky-radio>
+      <div class="radio-button">
+        <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="positive">
+          <sky-radio-label>Yes</sky-radio-label>
+        </sky-radio>
+      </div>
+      <div class="radio-button">
+        <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="negative">
+          <sky-radio-label>No</sky-radio-label>
+        </sky-radio>
+      </div>
     </div>
     <feedback-form [(feedbackType)]="parentType">
     </feedback-form>
