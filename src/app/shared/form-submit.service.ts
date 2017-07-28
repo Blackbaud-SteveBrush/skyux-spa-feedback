@@ -6,6 +6,7 @@ export class FormSubmitService {
   private URL: string = 'https://squaresfeedbackapi.azurewebsites.net/api/feedback';
   public constructor(private http: Http) { }
   public submitData(formData: any): any {
+    console.log(formData);
     return this.http.post(this.URL, formData);
   }
 }

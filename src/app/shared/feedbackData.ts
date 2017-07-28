@@ -1,20 +1,17 @@
+import { User } from './user';
+import { ParentalAdvisory } from '../shared/parental-advisory';
+
 export class FeedbackData {
   public type: string = '';
-  public url: string = '/Home/Fishing-tricks';
-  public user: User = {
-    id: '1234',
-    firstName: `Cap'n`,
-    lastName: 'Ahab',
-    email: 'white@whale.com'
-  };
   public do_not_contact: boolean = true;
   public comment: string = '';
-  public product: string = 'renxt';
-}
+  public url: string;
+  public user: User;
+  public product: string;
 
-interface User {
-  id: any;
-  firstName: string;
-  lastName: string;
-  email: string;
+  constructor(formData: ParentalAdvisory) {
+    this.user = formData.user;
+    this.product = formData.product;
+    this.url = formData.url;
+  }
 }
