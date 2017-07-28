@@ -1,24 +1,17 @@
 <div *ngIf="(this.feedbackType === 'positive' || this.feedbackType === 'negative')">
-  <form>
-    <p *ngIf="feedbackType === 'negative'">We're sorry you didn't find this helpful! Please let us know why.</p>
-    <textarea [(ngModel)]="formData.comment" name="comment" class="sky-form-control" rows="5" cols="10" placeholder="Have more feedback? Let us know!"></textarea>
-    <div class="contact-checkbox-container">
-      <sky-checkbox [(ngModel)]="formData.do_not_contact" name="doNotContact">
-        <sky-checkbox-label>
-          I do not wish to be contacted regarding my feedback
-        </sky-checkbox-label>
-      </sky-checkbox>
-    </div>
-    <div class="button-group">
-      <button (click)="submitForm()" class="sky-btn sky-btn-primary" type="submit">Submit</button>
-      <button (click)="clearForm()" class="sky-btn sky-btn-default" type="reset">Cancel</button>
-    </div>
-  </form>
+  <p *ngIf="feedbackType === 'negative'">We're sorry you didn't find this helpful! Please let us know why.</p>
+  <textarea [(ngModel)]="formData.comment" name="comment" class="sky-form-control" rows="5" cols="10" placeholder="Have more feedback? Let us know!"></textarea>
+  <div class="contact-checkbox-container">
+    <sky-checkbox [(ngModel)]="formData.do_not_contact" name="doNotContact">
+      <sky-checkbox-label>
+        I do not wish to be contacted regarding my feedback
+      </sky-checkbox-label>
+    </sky-checkbox>
+  </div>
+  <div class="button-group">
+    <button (click)="submitForm()" class="sky-btn sky-btn-primary" type="submit">Submit</button>
+    <button (click)="clearForm()" class="sky-btn sky-btn-default" type="button">Cancel</button>
+  </div>
   <sky-wait [isWaiting]="isWaiting">
   </sky-wait>
-</div>
-<div *ngIf="feedbackSubmitted">
-  <p>
-    Thank you for submitting your feedback!
-  </p>
 </div>

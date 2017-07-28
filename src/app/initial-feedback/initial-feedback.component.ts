@@ -1,36 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { ParentalAdvisory } from '../shared/parental-advisory';
+import { ParentMessagingService } from '../shared/parent-communication.service';
+import { FormSubmitService } from '../shared/form-submit.service';
 
 @Component({
   selector: 'initial-feedback',
-  templateUrl: 'initial-feedback.component.html'
+  templateUrl: 'initial-feedback.component.html',
+  styleUrls: ['./initial-feedback.component.scss']
 })
-export class FeedbackComponent {
+export class FeedbackComponent implements AfterViewInit {
   public parentType: string = '';
   public parentFormData: ParentalAdvisory;
 
-  constructor() {
-    window.addEventListener('message', (event) => {
-      if (event.origin !== 'https://host.nxt.blackbaud.com') {
-        return;
-      }
-
-      if (event.data.source === 'feedback-parent') {
-        console.log('Message received from template!', event.data);
-        this.parentFormData = event.data.response;
-      }
-    }, false);
+  constructor(
+    private submitService: FormSubmitService,
+    private messageService: ParentMessagingService) {
+    this.messageService.setupEventListner();
   }
 
+  public ngAfterViewInit() {
+    this.messageService.broadCastReady();
+  }
+  public getFormSubmitted () {
+    return this.submitService.feedbackSubmitted;
+  }
   public sendHeightToSpa() {
-    setTimeout(() => {
-      let feedbackHeight = window.document.body.offsetHeight;
-      let feedbackWidth = window.document.body.offsetWidth;
-      window.parent.postMessage({
-        message: 'Expand Iframe please Mom',
-        source: 'feedback',
-        feedbackHeight,
-        feedbackWidth
-      }, '*'); }, 200);
+    setTimeout(this.messageService.broadCastReady, 200);
   }
 }

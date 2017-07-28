@@ -1,15 +1,16 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { FeedbackData } from '../shared/feedbackData';
 import { FormSubmitService } from '../shared/form-submit.service';
 import { ParentalAdvisory } from '../shared/parental-advisory';
+import { ParentMessagingService } from '../shared/parent-communication.service';
 
 @Component({
   selector: 'feedback-form',
   templateUrl: './feedback-form.component.html',
   styleUrls: ['./feedback-form.component.scss']
 })
-export class PositiveFormFeedbackComponent implements AfterViewInit {
+export class PositiveFormFeedbackComponent {
   @Input()
   public feedbackType: string = '';
 
@@ -22,24 +23,14 @@ export class PositiveFormFeedbackComponent implements AfterViewInit {
   };
 
   private isWaiting: boolean = false;
-  public feedbackSubmitted: boolean = false;
 
-  constructor(private submitService: FormSubmitService) { }
-
-  public ngAfterViewInit() {
-    let feedbackHeight = window.document.body.offsetHeight;
-    let feedbackWidth = window.document.body.offsetWidth;
-    window.parent.postMessage({
-      message: 'Hello, template!',
-      source: 'feedback',
-      feedbackHeight,
-      feedbackWidth
-    }, '*');
-  }
+  constructor(
+    private submitService: FormSubmitService,
+    private messageService: ParentMessagingService) { }
 
   public submitForm() {
     this.isWaiting = true;
-    let formData = new FeedbackData(this.parentFormData);
+    let formData = new FeedbackData(this.messageService.parentAdvisoryData);
     formData.comment = this.formData.comment;
     formData.type = this.feedbackType;
     formData.do_not_contact = this.formData.do_not_contact;
@@ -47,14 +38,19 @@ export class PositiveFormFeedbackComponent implements AfterViewInit {
       .subscribe(res => {
         this.isWaiting = false;
         if (res.status === 200) {
+          this.submitService.feedbackSubmitted =  true;
           this.clearForm();
         }
       });
   }
 
   public clearForm() {
-    this.formData = new FeedbackData(this.parentFormData);
     this.feedbackType = '';
-    this.feedbackSubmitted =  true;
+    this.formData = {
+      comment: '',
+      do_not_contact: true
+    };
+    this.submitService.feedbackSubmitted = true;
+    setTimeout(this.messageService.broadCastReady, 200);
   }
 }
