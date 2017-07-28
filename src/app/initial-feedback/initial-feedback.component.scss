@@ -1,3 +1,18 @@
 p {
   margin-top: 0;
 }
+
+
+.total-wrapper {
+  position: relative;
+}
+
+#closeOut {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: red;
+  &:hover {
+    cursor: pointer;
+  }
+}

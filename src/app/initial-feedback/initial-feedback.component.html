@@ -1,18 +1,21 @@
-<div *ngIf="!getFormSubmitted()">
-  <p>Was this information helpful?</p>
-  <div>
-    <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="positive">
-      <sky-radio-label>Yes</sky-radio-label>
-    </sky-radio>
-    <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="negative">
-      <sky-radio-label>No</sky-radio-label>
-    </sky-radio>
+<div class="total-wrapper">
+  <span id="closeOut" (click)="closeWidget()">X</span>
+  <div *ngIf="!getFormSubmitted()">
+    <p>Was this information helpful?</p>
+    <div>
+      <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="positive">
+        <sky-radio-label>Yes</sky-radio-label>
+      </sky-radio>
+      <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="negative">
+        <sky-radio-label>No</sky-radio-label>
+      </sky-radio>
+    </div>
+    <feedback-form [(feedbackType)]="parentType">
+    </feedback-form>
   </div>
-  <feedback-form [(feedbackType)]="parentType">
-  </feedback-form>
-</div>
-<div *ngIf="getFormSubmitted()">
-  <p>
-    Thank you for submitting your feedback!
-  </p>
+  <div *ngIf="getFormSubmitted()">
+    <p>
+      Thank you for submitting your feedback!
+    </p>
+  </div>
 </div>

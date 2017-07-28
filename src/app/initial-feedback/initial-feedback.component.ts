@@ -18,6 +18,10 @@ export class FeedbackComponent implements AfterViewInit {
     this.messageService.setupEventListner();
   }
 
+  public closeWidget() {
+    this.messageService.closeWidget();
+  }
+
   public ngAfterViewInit() {
     this.messageService.broadCastReady();
   }

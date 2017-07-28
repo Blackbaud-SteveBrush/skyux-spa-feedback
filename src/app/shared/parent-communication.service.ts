@@ -15,6 +15,14 @@ export class ParentMessagingService {
     }, '*');
   }
 
+  public closeWidget() {
+    window.parent.postMessage({
+      message: 'Close Feedback',
+      source: 'feedback',
+      actionType: 'close'
+    }, '*');
+  }
+
   public setupEventListner() {
     window.addEventListener('message', (event) => {
       if (event.origin !== 'https://host.nxt.blackbaud.com') {
