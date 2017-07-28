@@ -14,8 +14,8 @@ export class FeedbackComponent implements OnInit {
       user: {
         id: '1234',
         email: 'b@b',
-        firstName: 'name',
-        lastName: 'name'
+        first_name: 'name',
+        last_name: 'name'
       },
       url: '/fish',
       product: 'renxt'
@@ -47,4 +47,3 @@ export class FeedbackComponent implements OnInit {
     }, '*');
   }
 }
-
