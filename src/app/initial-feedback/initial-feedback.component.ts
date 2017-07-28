@@ -39,10 +39,11 @@ export class FeedbackComponent implements OnInit {
   }
 
   public sendHeightToSpa() {
+    let feedbackHeight = window.document.body.offsetHeight;
     window.parent.postMessage({
       message: 'Expand Iframe please Mom',
       source: 'feedback',
-      feedbackHeight: window.document.body.offsetHeight;
+      feedbackHeight
     }, '*');
   }
 }
