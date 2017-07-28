@@ -50,7 +50,6 @@ export class PositiveFormFeedbackComponent {
       comment: '',
       do_not_contact: true
     };
-    this.submitService.feedbackSubmitted = true;
     setTimeout(this.messageService.broadCastReady, 200);
   }
 }
