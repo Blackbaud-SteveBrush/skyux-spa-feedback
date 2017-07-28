@@ -25,10 +25,12 @@ export class FeedbackComponent {
   public sendHeightToSpa() {
     setTimeout(() => {
       let feedbackHeight = window.document.body.offsetHeight;
+      let feedbackWidth = window.document.body.offsetWidth;
       window.parent.postMessage({
         message: 'Expand Iframe please Mom',
         source: 'feedback',
-        feedbackHeight
+        feedbackHeight,
+        feedbackWidth
       }, '*'); }, 200);
   }
 }

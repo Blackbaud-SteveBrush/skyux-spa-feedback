@@ -27,9 +27,13 @@ export class PositiveFormFeedbackComponent implements AfterViewInit {
   constructor(private submitService: FormSubmitService) { }
 
   public ngAfterViewInit() {
+    let feedbackHeight = window.document.body.offsetHeight;
+    let feedbackWidth = window.document.body.offsetWidth;
     window.parent.postMessage({
       message: 'Hello, template!',
-      source: 'feedback'
+      source: 'feedback',
+      feedbackHeight,
+      feedbackWidth
     }, '*');
   }
 
