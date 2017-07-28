@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { FeedbackData } from '../shared/feedbackData';
 import { FormSubmitService } from '../shared/form-submit.service';
@@ -9,7 +9,7 @@ import { ParentalAdvisory } from '../shared/parental-advisory';
   templateUrl: './feedback-form.component.html',
   styleUrls: ['./feedback-form.component.scss']
 })
-export class PositiveFormFeedbackComponent {
+export class PositiveFormFeedbackComponent implements OnInit {
   @Input()
   public feedbackType: string = '';
 
@@ -20,8 +20,10 @@ export class PositiveFormFeedbackComponent {
   private isWaiting: boolean = false;
   public feedbackSubmitted: boolean = false;
 
-  constructor(private submitService: FormSubmitService) {
-    this.formData = new FeedbackData(parentFormData);
+  constructor(private submitService: FormSubmitService) { }
+
+  public ngOnInit() {
+    this.formData = new FeedbackData(this.parentFormData);
   }
 
   public submitForm() {
@@ -37,7 +39,7 @@ export class PositiveFormFeedbackComponent {
   }
 
   public clearForm() {
-    this.formData = new FeedbackData();
+    this.formData = new FeedbackData(this.parentFormData);
     this.feedbackType = '';
     this.feedbackSubmitted =  true;
   }

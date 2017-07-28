@@ -10,6 +10,17 @@ export class FeedbackComponent implements OnInit {
   public parentFormData: ParentalAdvisory;
 
   public ngOnInit() {
+    this.parentFormData = {
+      user: {
+        id: '1234',
+        email: 'b@b',
+        firstName: 'name',
+        lastName: 'name'
+      },
+      url: '/fish',
+      product: 'renxt'
+    };
+
     window.addEventListener('message', (event) => {
       if (event.origin !== 'https://host.nxt.blackbaud.com') {
         return;
@@ -24,6 +35,14 @@ export class FeedbackComponent implements OnInit {
     window.parent.postMessage({
       message: 'Hello, template!',
       source: 'feedback'
+    }, '*');
+  }
+
+  public sendHeightToSpa() {
+    window.parent.postMessage({
+      message: 'Expand Iframe please Mom',
+      source: 'feedback',
+      feedbackHeight: window.document.body.offsetHeight;
     }, '*');
   }
 }

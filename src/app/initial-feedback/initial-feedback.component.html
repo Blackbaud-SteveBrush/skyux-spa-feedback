@@ -1,11 +1,11 @@
 <p>Was this information helpful?</p>
 <div>
-  <sky-radio name="radiotest" [(ngModel)]="parentType" value="positive">
+  <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="positive">
     <sky-radio-label>Yes</sky-radio-label>
   </sky-radio>
-  <sky-radio name="radiotest" [(ngModel)]="parentType" value="negative">
+  <sky-radio name="radiotest" [(ngModel)]="parentType" (click)="sendHeightToSpa()" value="negative">
     <sky-radio-label>No</sky-radio-label>
   </sky-radio>
 </div>
-<feedback-form [(feedbackType)]="parentType" parentFormData="parentFormData">
+<feedback-form [(feedbackType)]="parentType" [(parentFormData)]="parentFormData">
 </feedback-form>
