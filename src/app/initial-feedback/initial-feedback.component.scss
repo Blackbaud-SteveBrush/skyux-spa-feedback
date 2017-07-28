@@ -10,8 +10,8 @@ p {
 #closeOut {
   position: absolute;
   right: 0;
-  top: 0;
-  color: red;
+  top: -5px;
+  color: #d93a3d;
   &:hover {
     cursor: pointer;
   }

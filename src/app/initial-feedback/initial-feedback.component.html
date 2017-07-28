@@ -1,5 +1,7 @@
 <div class="total-wrapper">
-  <span id="closeOut" (click)="closeWidget()">X</span>
+  <span id="closeOut" (click)="closeWidget()">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </span>
   <div *ngIf="!getFormSubmitted()">
     <p>Was this information helpful?</p>
     <div>
