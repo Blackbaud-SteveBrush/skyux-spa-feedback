@@ -1,26 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ParentalAdvisory } from '../shared/parental-advisory';
 
 @Component({
   selector: 'initial-feedback',
   templateUrl: 'initial-feedback.component.html'
 })
-export class FeedbackComponent implements OnInit {
+export class FeedbackComponent {
   public parentType: string = '';
   public parentFormData: ParentalAdvisory;
 
-  public ngOnInit() {
-    this.parentFormData = {
-      user: {
-        id: '1234',
-        email: 'b@b',
-        first_name: 'name',
-        last_name: 'name'
-      },
-      url: '/fish',
-      product: 'renxt'
-    };
-
+  constructor() {
     window.addEventListener('message', (event) => {
       if (event.origin !== 'https://host.nxt.blackbaud.com') {
         return;
@@ -31,19 +20,15 @@ export class FeedbackComponent implements OnInit {
         this.parentFormData = event.data.response;
       }
     }, false);
-
-    window.parent.postMessage({
-      message: 'Hello, template!',
-      source: 'feedback'
-    }, '*');
   }
 
   public sendHeightToSpa() {
-    let feedbackHeight = window.document.body.offsetHeight;
-    window.parent.postMessage({
-      message: 'Expand Iframe please Mom',
-      source: 'feedback',
-      feedbackHeight
-    }, '*');
+    setTimeout(() => {
+      let feedbackHeight = window.document.body.offsetHeight;
+      window.parent.postMessage({
+        message: 'Expand Iframe please Mom',
+        source: 'feedback',
+        feedbackHeight
+      }, '*'); }, 200);
   }
 }

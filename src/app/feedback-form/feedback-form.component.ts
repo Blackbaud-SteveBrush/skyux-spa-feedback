@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 
 import { FeedbackData } from '../shared/feedbackData';
 import { FormSubmitService } from '../shared/form-submit.service';
@@ -9,27 +9,37 @@ import { ParentalAdvisory } from '../shared/parental-advisory';
   templateUrl: './feedback-form.component.html',
   styleUrls: ['./feedback-form.component.scss']
 })
-export class PositiveFormFeedbackComponent implements OnInit {
+export class PositiveFormFeedbackComponent implements AfterViewInit {
   @Input()
   public feedbackType: string = '';
 
   @Input()
   public parentFormData: ParentalAdvisory;
 
-  private formData: any;
+  private formData: any = {
+    comment: '',
+    do_not_contact: true
+  };
+
   private isWaiting: boolean = false;
   public feedbackSubmitted: boolean = false;
 
   constructor(private submitService: FormSubmitService) { }
 
-  public ngOnInit() {
-    this.formData = new FeedbackData(this.parentFormData);
+  public ngAfterViewInit() {
+    window.parent.postMessage({
+      message: 'Hello, template!',
+      source: 'feedback'
+    }, '*');
   }
 
   public submitForm() {
     this.isWaiting = true;
-    this.formData.type = this.feedbackType;
-    this.submitService.submitData(this.formData)
+    let formData = new FeedbackData(this.parentFormData);
+    formData.comment = this.formData.comment;
+    formData.type = this.feedbackType;
+    formData.do_not_contact = this.formData.do_not_contact;
+    this.submitService.submitData(formData)
       .subscribe(res => {
         this.isWaiting = false;
         if (res.status === 200) {
